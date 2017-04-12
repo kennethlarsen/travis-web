@@ -12,7 +12,7 @@ moduleForAcceptance('Acceptance | builds/current tab', {
 });
 
 test('renders most recent repository without builds', function (assert) {
-  server.create('repository', { slug: 'travis-ci/travis-web' });
+  server.create('repository');
 
   currentRepoTab
     .visit();
@@ -62,7 +62,7 @@ test('renders most recent repository and most recent build when builds present, 
 });
 
 test('error message when build jobs array is empty', function (assert) {
-  let repository =  server.create('repository', { slug: 'travis-ci/travis-web' });
+  let repository =  server.create('repository');
   const branch = server.create('branch', { name: 'accenptance-tests' });
   let build = server.create('build', { number: '5', state: 'passed', repository, branch });
   build.createCommit({ author_email: 'mrt@travis-ci.org', author_name: 'Mr T', committer_email: 'mrt@travis-ci.org', committer_name: 'Mr T', branch: 'acceptance-tests', message: 'This is a message', branch_is_default: true });
